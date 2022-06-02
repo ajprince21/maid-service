@@ -1,0 +1,86 @@
+1# code of ajax for sending id to view 
+<script type="text/javascript">
+		$('.button_edit').click(function(){
+			console.log("Clicked On Edit Button")
+			var id;
+			id = $(this).attr("data-catid");
+			$.ajax(
+			{
+				type:"GET",
+				url: "update_profile",
+				data:{
+					maid_id: id
+				},
+				success: function( data ) 
+				{
+					console.log("Success")
+				}
+			})
+
+		});
+	</script>
+
+
+2# 
+
+<form method="post">
+		{% csrf_token %}
+		<table>
+			{{form.as_table}}
+		</table>
+		<input type="submit" class="btn btn-primary" value="Update">	
+		<button onclick="history.back()" type="button" class="btn btn-info">Go Back</button>	
+</form>
+
+3# 
+
+
+// $(document).ready(function () {
+// 	$("#update_profile_form").submit(function (event) {
+// 		console.log("Clicked on form submit")
+// 		var csrftoken = getCookie('csrftoken');
+// 		event.preventDefault();
+// 		$.ajax({
+// 			url: 'update_maid_profile/',
+// 			type: "POST",
+// 			headers: {'X-CSRFToken': csrftoken},
+// 			// mode: 'same-origin' 
+// 			data: $('#update_profile_form').serialize(),
+// 			success: function (data) {
+// 				console.log(data);
+// 			}
+// 		}); // end ajax
+// 	});
+// });
+
+
+
+4# 
+
+
+// $(document).on('submit','.button_save_update_profile',function(event) {
+// 		event.preventDefault();
+		
+// 		// var csrftoken = getCookie('csrftoken');
+// 		alert();
+// 		console.log("Clicked on form submit")
+// 		$.ajax({
+// 			type: "POST",
+// 			headers: {'X-CSRFToken': csrftoken},
+// 			url: 'update_maid_profile/'+69,
+// 			data: $('#update_profile_form').serialize(),
+// 					// csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+
+// 			// mode: 'same-origin' 
+// 			success: function (data) {
+// 				console.log(data);
+// 			}
+// 		});
+// 	});
+
+
+
+
+
+
+

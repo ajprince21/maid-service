@@ -1,0 +1,8 @@
+{% block content %}
+<form id="update_profile_form" method="post" data-id={{maid_id}}>
+		{% csrf_token %}
+		<table>
+			{{form.as_table}}
+		</table>	
+</form>
+{% endblock %}

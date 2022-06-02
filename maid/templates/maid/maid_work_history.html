@@ -1,0 +1,40 @@
+{% extends "maid/base.html" %}
+{% block title %}
+	Maid and their customers History
+{% endblock %}
+{% block content %}
+	<div style="color : orange; font-size: 20px;">
+		<marquee behavior="alternate" direction="left">All Maids Work  History with their Customers , Customer Name Start Date End Date and their address.</marquee>
+	</div>
+	{% for customer in list_of_maid_with_customer%}
+		{% for key, value in customer.items %}
+			<p style="text-transform : uppercase; color: green;">Maid Name :  {{ key }} </p>
+			<table class="table table-bordered border-primary">
+				<thead>
+					<tr>
+						<th scope="col">Custmer user Id</th>
+						<th scope="col">Customer Name</th>
+						<th scope="col">Customer Address </th>
+						<th scope="col">Customer Email </th>
+						<th scope="col">Start Date</th>
+						<th scope="col">End Date</th>
+					</tr>
+				</thead>
+				{%for customer in value%}
+					{% with current_customer=customer.user_customer %}
+						<tbody>
+							<tr>
+								<td style="text-transform: uppercase; color: #761803 ;">{{current_customer.username}} </td>
+								<td style="text-transform: capitalize;">{{current_customer.first_name}}  {{current_customer.last_name}}</td>
+								<td style="text-transform: capitalize;">{{current_customer.userprofile.address}} </td>
+								<td>{{current_customer.email}}</td>
+								<td>{{customer.start_date}}</td>
+								<td>{{customer.end_date}}</td>
+							</tr>
+						</tbody>
+					{% endwith %}
+				{%endfor%}
+			</table>
+		{% endfor %}
+	{% endfor %}	
+{% endblock %}

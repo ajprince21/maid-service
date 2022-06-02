@@ -1,0 +1,28 @@
+{% extends "maid/base.html" %}
+{% block title %}
+	Login
+{% endblock %}
+{% block content %}
+
+<div class="alert alert-primary" role="alert">
+	Hello Welcome to maidservices.com, please provide your username and password for login
+</div >
+<div class="center">
+<form method="post" >
+	{% csrf_token %}
+	<h3 class="word">Login</h3>
+	<div class="tabledata">
+	<table >
+		{{form.as_table}}
+	</table>
+	</div>
+	<div class="mybtn">
+	<input type="submit" class="btn btn-primary" value="Signin">
+	<button onclick="history.back()" type="button" class="btn btn-info">Go Back</button>
+	</div>
+</form>
+</div>
+<p>Forgot Password <a href="/maid/forgot_password/">Click Here</a> for reset. </p>
+<p>If you are not registered user <a href="/maid/signup/">Click Here</a> for Signup.</p>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "maid/base.html" %}
+{% block title %}
+	Maid Working List
+{% endblock %}
+{% block content %}
+	<div class="alert alert-primary" role="alert">
+		<marquee behavior="alternate" direction="left">Hi {{ request.user.first_name }}, these are details of maids which are working at your home ..</marquee>
+		
+	</div>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th scope="col"> Maid Name</th>
+				<th scope="col">Start Date</th>
+				<th scope="col">End Date</th>
+				<th scope="col">Remove from Work</th>
+
+			</tr>
+		</thead>
+		{% for maid in worked_maid %}
+			<tbody>
+				<tr>
+					<td style="text-transform: capitalize;">{{maid.maid_user.first_name}} {{maid.maid_user.last_name}}</td>
+					<td>{{maid.start_date}} </td>
+					<td>{{maid.end_date}} </td>
+					{% if maid.is_working  %}
+						<td> <a type="submit"  class="btn btn-warning" href="{% url 'maid:remove_maid' maid.maid_user.id %}"> Remove</a> </td>
+					{% else %}
+						<td> Not Working </td>
+					{% endif %}	
+				</tr>
+			</tbody>
+		{% endfor %}
+	</table>	
+{% endblock %}

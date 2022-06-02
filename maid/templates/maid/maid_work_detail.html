@@ -1,0 +1,27 @@
+<!-- This is html templates for Form (MaidWorkDetailForm) For selecting maid and start_date and end_date and add-to-work  -->
+{% extends "maid/base.html" %}
+{% block title %}
+	Add-Maid-To-Work
+{% endblock %}
+{% block content %}
+	<form method="post">  
+		{% csrf_token %}
+		<div class="alert alert-info" role="alert">
+			Welcome to maidservices.com, please select maid and add to work .!
+		</div>
+		{% for field in form %}
+			<div class="fieldWrapper">
+				{{ field.label_tag }} {{ field }} 
+			</div>
+			<br>
+		{% endfor %}
+		<!-- Add -to-work button only visible when user is looged in 			 -->
+		{% if user.is_authenticated %}
+			<input type="submit" class="btn btn-info" value="Add-to-work ">	
+			<button onclick="history.back()" type="button" class="btn btn-info">Go Back</button>
+		{% else %}
+			<p style="color:orangered;">Please Login to Add maid to work </p>
+			<p><a href="/maid/login/">Click here</a> to Login.</p>	
+		{% endif %}
+	</form>	
+{% endblock %}
